@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       {/* Features Section */}
       <section id="features" className="py-20">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-center text-gray-800">Platform Features</h2>
+          <h2 className="text-4xl font-bold text-center text-blue-800">Platform Features</h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Feature 1 */}
             <Link href="/features/create-host" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
