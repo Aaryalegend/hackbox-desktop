@@ -1,5 +1,8 @@
+// pages/page.tsx
 import { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
+import Navbar from './components/Navbar';
 
 const Home: NextPage = () => {
   return (
@@ -11,24 +14,16 @@ const Home: NextPage = () => {
       </Head>
 
       {/* Navbar */}
-      <nav className="bg-gray-800">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-white text-2xl font-bold">HackBox</a>
-          <div className="space-x-4">
-            <a href="#features" className="text-white">Features</a>
-            <a href="#how-it-works" className="text-white">How it Works</a>
-            <a href="#contact" className="text-white">Contact Us</a>
-            <a href="#" className="text-white border px-3 py-2 rounded-md hover:bg-white hover:text-gray-800">Login</a>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
       <section className="bg-gray-100 py-20">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-bold text-gray-800">Welcome to HackBox</h1>
           <p className="text-xl text-gray-600 mt-4">Your ultimate platform for hosting intracollege and intercollege hackathons.</p>
-          <a href="#features" className="mt-8 inline-block bg-blue-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-600">Get Started</a>
+          <Link href="#features" className="mt-8 inline-block bg-blue-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-600">
+            Get Started
+          </Link>
         </div>
       </section>
 
@@ -38,20 +33,20 @@ const Home: NextPage = () => {
           <h2 className="text-4xl font-bold text-center text-gray-800">Platform Features</h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Feature 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <Link href="/features/create-host" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-xl font-semibold text-gray-700">Create & Host Hackathons</h3>
               <p className="mt-4 text-gray-600">Easily create, manage, and host hackathons at intra- and intercollege levels.</p>
-            </div>
+            </Link>
             {/* Feature 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <Link href="/features/team-registration" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-xl font-semibold text-gray-700">Team Registration & Management</h3>
               <p className="mt-4 text-gray-600">Create teams, join existing ones, and manage all participants effortlessly.</p>
-            </div>
+            </Link>
             {/* Feature 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <Link href="/features/submission-judging" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
               <h3 className="text-xl font-semibold text-gray-700">Submission & Judging System</h3>
               <p className="mt-4 text-gray-600">Submit projects, and let judges evaluate and rank participants.</p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -89,6 +84,6 @@ const Home: NextPage = () => {
       </footer>
     </div>
   );
-}
+};
 
 export default Home;
