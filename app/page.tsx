@@ -3,29 +3,38 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from './components/Navbar';
+import { BackgroundBeams } from './components/ui/background-beams';
+import { BackgroundBeamsWithCollision } from './components/ui/background-beams-with-collision';
+import { BackgroundGradient } from './components/ui/background-gradient';
+import { CardSpotlight } from './components/ui/card-spotlight';
 
 const Home: NextPage = () => {
   return (
     <div>
+      
       <Head>
         <title>HackBox - Host Hackathons with Ease</title>
         <meta name="description" content="HackBox - A platform to host intracollege and intercollege hackathons." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
       {/* Navbar */}
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="bg-gray-100 py-20">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl font-bold text-gray-800">Welcome to HackBox</h1>
-          <p className="text-xl text-gray-600 mt-4">Your ultimate platform for hosting intracollege and intercollege hackathons.</p>
-          <Link href="#features" className="mt-8 inline-block bg-blue-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-600">
-            Get Started
-          </Link>
-        </div>
-      </section>
+      
+      <BackgroundBeamsWithCollision>
+        {/* Hero Section */}
+        <section>
+          <div className="container mx-auto text-center">
+            <h1 className="text-5xl font-bold text-white-800">Welcome to HackBox</h1>
+            <p className="text-xl text-gray-600 mt-4">Your ultimate platform for hosting intracollege and intercollege hackathons.</p>
+            <Link href="#features" className="mt-8 inline-block bg-blue-500 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-600">
+              Get Started
+            </Link>
+          </div>
+        </section>
+      </BackgroundBeamsWithCollision>
 
       {/* Features Section */}
       <section id="features" className="py-20">
@@ -33,20 +42,26 @@ const Home: NextPage = () => {
           <h2 className="text-4xl font-bold text-center text-blue-800">Platform Features</h2>
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-10">
             {/* Feature 1 */}
-            <Link href="/features/create-host" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-gray-700">Create & Host Hackathons</h3>
-              <p className="mt-4 text-gray-600">Easily create, manage, and host hackathons at intra- and intercollege levels.</p>
-            </Link>
+            <CardSpotlight className="h-64 w-108">
+              <Link href="/features/create-host">
+                <h3 className="text-xl font-semibold text-white-700">Create & Host Hackathons</h3>
+                <p className="mt-4 text-blue-300">Easily create, manage, and host hackathons at intra- and intercollege levels.</p>
+              </Link>
+              </CardSpotlight>
             {/* Feature 2 */}
-            <Link href="/features/team-registration" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-gray-700">Team Registration & Management</h3>
-              <p className="mt-4 text-gray-600">Create teams, join existing ones, and manage all participants effortlessly.</p>
+            <CardSpotlight className="h-64 w-108">
+            <Link href="/features/team-registration">
+              <h3 className="text-xl font-semibold text-white-700">Team Registration & Management</h3>
+              <p className="mt-4 text-blue-300">Create teams, join existing ones, and manage all participants effortlessly.</p>
             </Link>
+            </CardSpotlight>
             {/* Feature 3 */}
-            <Link href="/features/submission-judging" className="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow duration-300">
-              <h3 className="text-xl font-semibold text-gray-700">Submission & Judging System</h3>
-              <p className="mt-4 text-gray-600">Submit projects, and let judges evaluate and rank participants.</p>
+            <CardSpotlight className="h-64 w-108">
+            <Link href="/features/submission-judging">
+              <h3 className="text-xl font-semibold text-white-700">Submission & Judging System</h3>
+              <p className="mt-4 text-blue-300">Submit projects, and let judges evaluate and rank participants.</p>
             </Link>
+            </CardSpotlight>
           </div>
         </div>
       </section>
