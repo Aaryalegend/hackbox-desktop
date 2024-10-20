@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 
 const defaultTheme = require("tailwindcss/defaultTheme"); 
 const colors = require("tailwindcss/colors"); 
+
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -15,6 +16,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        aurora: "aurora 60s linear infinite",
+        move: "move 5s linear infinite",
+      },
+      keyframes: {
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

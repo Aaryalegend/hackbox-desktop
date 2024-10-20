@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Roboto } from 'next/font/google'
 import "./globals.css";
+import { AppProps } from "next/app";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -11,6 +13,13 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const roboto = Roboto({
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -31,5 +40,13 @@ export default function RootLayout({
         {children}
       </body>
     </html>
+  );
+};
+
+export function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <main className={roboto.className}>
+      <Component {...pageProps} />
+    </main>
   );
 }

@@ -15,16 +15,25 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Navigation Links */}
-        <div className="flex space-x-4">
+        <div className="flex items-center space-x-4">
           {/* Features Link Scrolls to Platform Features on the homepage */}
-          <Link href="/#features" scroll={false} className="text-gray-300 hover:text-white">
+          <button className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+          <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+          <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm font-medium text-white backdrop-blur-3xl">
+          + Host
+          </span>
+          </button>
+          <Link href="/#features" className="text-gray-300 hover:text-white">
             Features
           </Link>
           <Link href="/about" className="text-gray-300 hover:text-white">
             About
           </Link>
-          <Link href="/#footer" scroll={false} className="text-gray-300 hover:text-white">
+          <Link href="/#footer" className="text-gray-300 hover:text-white">
             Contact
+          </Link>
+          <Link href="/#footer" className="text-gray-300 hover:text-white">
+            Sign-Up
           </Link>
         </div>
       </div>

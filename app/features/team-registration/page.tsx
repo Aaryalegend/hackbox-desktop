@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Navbar from '../../components/Navbar';  // Importing Navbar component
+import { AuroraBackground } from '@/app/components/ui/aurora-background';
 
 const TeamRegistration: NextPage = () => {
   return (
