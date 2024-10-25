@@ -14,6 +14,10 @@ const CreateHost: NextPage = () => {
     location: '',
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<boolean>(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setHackathonDetails((prevDetails) => ({
@@ -24,19 +28,47 @@ const CreateHost: NextPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can add your API call to submit the hackathon details to your backend.
-    console.log(hackathonDetails);
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    const { title, description, date, time, location } = hackathonDetails;
     
-    // Reset form after submission
-    setHackathonDetails({
-      title: '',
-      description: '',
-      date: '',
-      time: '',
-      location: '',
-    });
-    
-    // Optionally show a success message or redirect the user
+    try {
+      const response = await fetch('/api/hackathons', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          date: `${date}T${time}`, // Combine date and time
+          location,
+        }),
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        console.log('Hackathon created successfully');
+        // Reset form after submission
+        setHackathonDetails({
+          title: '',
+          description: '',
+          date: '',
+          time: '',
+          location: '',
+        });
+      } else {
+        const { error } = await response.json();
+        setError(error || 'Failed to create hackathon');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred');
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,7 +99,7 @@ const CreateHost: NextPage = () => {
                 id="title"
                 value={hackathonDetails.title}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
                 required
               />
             </div>
@@ -78,7 +110,7 @@ const CreateHost: NextPage = () => {
                 id="description"
                 value={hackathonDetails.description}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
                 rows={4}
                 required
               />
@@ -92,7 +124,7 @@ const CreateHost: NextPage = () => {
                   id="date"
                   value={hackathonDetails.date}
                   onChange={handleChange}
-                  className="mt-1 p-2 border border-gray-300 rounded w-full"
+                  className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
                   required
                 />
               </div>
@@ -104,7 +136,7 @@ const CreateHost: NextPage = () => {
                   id="time"
                   value={hackathonDetails.time}
                   onChange={handleChange}
-                  className="mt-1 p-2 border border-gray-300 rounded w-full"
+                  className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
                   required
                 />
               </div>
@@ -117,13 +149,15 @@ const CreateHost: NextPage = () => {
                 id="location"
                 value={hackathonDetails.location}
                 onChange={handleChange}
-                className="mt-1 p-2 border border-gray-300 rounded w-full"
+                className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
                 required
               />
             </div>
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
-              Host Hackathon
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" disabled={loading}>
+              {loading ? 'Submitting...' : 'Host Hackathon'}
             </button>
+            {error && <p className="mt-4 text-red-500">{error}</p>}
+            {success && <p className="mt-4 text-green-500">Hackathon created successfully!</p>}
           </form>
         </div>
       </section>

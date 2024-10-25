@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const PinContainer = ({
   children,
@@ -28,15 +29,17 @@ export const PinContainer = ({
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
+  const router = useRouter();
+
   return (
-    <Link
-      className={cn(
-        "relative group/pin z-50  cursor-pointer",
-        containerClassName
-      )}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      href={href || "/"}
+    <div
+    className={cn(
+      "relative group/pin z-50  cursor-pointer",
+      containerClassName
+    )}
+    onMouseEnter={onMouseEnter}
+    onMouseLeave={onMouseLeave}
+    onClick={() => router.push('/pages/events')}
     >
       <div
         style={{
@@ -55,7 +58,7 @@ export const PinContainer = ({
         </div>
       </div>
       <PinPerspective title={title} href={href} />
-    </Link>
+    </div>
   );
 };
 

@@ -20,6 +20,7 @@ const Events: NextPage = () => {
   useEffect(() => {
     const fetchHackathons = async () => {
       const response = await fetch('/api/hackathons');
+      console.log(response);
       const data = await response.json();
       setHackathons(data);
     };
